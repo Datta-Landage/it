@@ -56,7 +56,7 @@ const {
 
 const {
   pdfData,
-  getpdfData,
+  getPdfData,
   getpdfById,
   updatepdfData,
   Deletepdfdata,
@@ -161,7 +161,7 @@ router.delete("/deleteactivityId/:activityId", DeleteactivityById);
 
 //pdf
 router.post("/pdfData", upload.single("Photo"), pdfData);
-router.get("/getpdfData", getpdfData);
+router.get("/getpdfData/PDF", getPdfData);
 router.get("/getpdfById/:pdfId", getpdfById);
 router.put("/updatepdfData/:pdfId", upload.single("Photo"), updatepdfData);
 router.delete("/Deletepdfdata", Deletepdfdata);

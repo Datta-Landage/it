@@ -29,7 +29,22 @@ const pdfData = async (req, res) => {
   }
 };
 
-const getpdfData = async (req, res) => {
+// const getpdfData = async (req, res) => {
+//   try {
+//     const pdfData = await pdfModel.find({ isDeleted: false });
+//     res.status(200).send({
+//       status: true,
+//       msg: "pdfData retrieved succesfully",
+//       data: pdfData,
+//     });
+//   } catch (err) {
+//     return res
+//       .status(500)
+//       .send({ status: false, msg: "server error", error: err.message });
+//   }
+// };
+
+const getPdfData = async (req, res) => {
   try {
     const pdfData = await pdfModel.find({ isDeleted: false });
     res.status(200).send({
@@ -127,7 +142,7 @@ const DeletepdfById = async (req, res) => {
 };
 module.exports = {
   pdfData,
-  getpdfData,
+  getPdfData,
   getpdfById,
   updatepdfData,
   Deletepdfdata,
