@@ -46,7 +46,7 @@ const pdfData = async (req, res) => {
 
 const getPdfData = async (req, res) => {
   try {
-    const pdfData = await pdfModel.find({ isDeleted: false });
+    const pdfData = await pdfModel.find();
     res.status(200).send({
       status: true,
       msg: "pdfData retrieved succesfully",
