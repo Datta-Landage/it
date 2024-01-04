@@ -1,10 +1,9 @@
 const loginModel = require("../Models/loginModel");
-
 const jwt = require("jsonwebtoken");
+
 const createUser = async (req, res) => {
   try {
     let data = req.body;
-
     const { Email, Password } = data;
 
     if (!Email || !Password) {
@@ -13,7 +12,7 @@ const createUser = async (req, res) => {
         .send({ status: false, message: "All fields are required" });
     }
 
-    // Directly store the plaintext password (not recommended for production)
+    // Removed password hashing
     const newUser = new loginModel(data);
     await newUser.save();
 
@@ -36,18 +35,18 @@ const userLogin = async (req, res) => {
 
       let user = await loginModel.findOne({ Email: userName });
 
-      // if (!user || user.Password !== Password) {
-      //   return res.status(400).send({
-      //     status: false,
-      //     msg: "credentials are not correct",
-      //   });
-      // }
+      if (!user || user.Password !== Password) {
+        return res.status(400).send({
+          status: false,
+          msg: "Credentials are not correct",
+        });
+      }
 
       let token = jwt.sign(
         {
           userId: user._id,
         },
-        "STMicheals",
+        "chessBoard",
         { expiresIn: "12hrs" }
       );
 
@@ -66,13 +65,13 @@ const getusersData = async (req, res) => {
     const Data = await loginModel.find();
     res.status(200).send({
       status: true,
-      msg: "Data retrieved succesfully",
+      msg: "Data retrieved successfully",
       data: Data,
     });
   } catch (err) {
     return res
       .status(500)
-      .send({ status: false, msg: "server error", error: err.message });
+      .send({ status: false, msg: "Server error", error: err.message });
   }
 };
 
