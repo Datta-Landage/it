@@ -11,7 +11,10 @@ const homeSchema = new mongoose.Schema(
     Description: {
       type: String,
     },
-    Photo: {
+    Photos: {
+      type: String,
+    },
+    Link: {
       type: String,
     },
     Published: {
