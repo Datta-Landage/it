@@ -1,9 +1,9 @@
 const homeModel = require("../Models/homeModel");
 const homeData = async (req, res) => {
   try {
-    const { _id, id, Heading, Description, Photo, Published } = req.body;
+    const { _id, id, Heading, Description, Photos, Published, Link } = req.body;
 
-    if (!Photo) {
+    if (!Photos) {
       throw new Error("No image data provided");
     }
 
@@ -20,7 +20,8 @@ const homeData = async (req, res) => {
       id,
       Heading,
       Description,
-      Photo,
+      Photos,
+      Link,
       Published,
     };
 
