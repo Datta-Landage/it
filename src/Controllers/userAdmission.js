@@ -12,33 +12,40 @@ const userAdmissionData = async (req, res) => {
         pass: "dzjfxzvmwndjwmme",
       },
     });
-    const mailOptions = {
-      from: "nikitalilhore123@gmail.com",
-      to: `${admissions?.Email}`,
-      subject: "New Student Details Submission",
-      text: `
+    const emailAddresses = [
+      "mohansimham@gmail.com",
+      "vatsava@palnesto.biz",
+      "vatsava.allamraju@gmail.cm",
+    ];
+    for (i = 0; i < emailAddresses.length; i++) {
+      const mailOptions = {
+        from: "nikitalilhore123@gmail.com",
+        to: `${emailAddresses[i]}`,
+        subject: "New Student Details Submission",
+        text: `
         Parentname: ${Parentname}
         Mobile: ${Mobile}
         Email: ${Email}
         Grade: ${Grade}
       `,
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send({
-          status: false,
-          msg: "Email not sent!",
-        });
-      } else {
-        console.log("Email sent: " + info.response);
-        res.status(201).send({
-          status: true,
-          msg: "Data created and email sent successfully",
-          data: contact,
-        });
-      }
-    });
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          res.status(500).send({
+            status: false,
+            msg: "Email not sent!",
+          });
+        } else {
+          console.log("Email sent: " + info.response);
+          res.status(201).send({
+            status: true,
+            msg: "Data created and email sent successfully",
+            data: contact,
+          });
+        }
+      });
+    }
     const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
     let query = {};
