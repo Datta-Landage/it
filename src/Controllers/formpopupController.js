@@ -35,7 +35,7 @@ const formPopuData = async (req, res) => {
         subject: "New Student Details Submission",
         text: `
         Childname: ${Childname}
-        DateofBirth: ${DateofBirth}
+        DateofBirth: ${DateofBirth.split("-").reverse().join("-")}
        EmailId: ${EmailId}
        Admission:${Admission}
        Campus:${Campus}
