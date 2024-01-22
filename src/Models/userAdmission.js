@@ -6,7 +6,7 @@ const userAdmissionSchema = new mongoose.Schema(
       type: String,
     },
     Mobile: {
-      type: String,
+      type: Number,
     },
     Email: {
       type: String,
