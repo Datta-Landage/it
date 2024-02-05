@@ -20,7 +20,7 @@ const userContactData = async (req, res) => {
     for (i = 0; i < emailAddresses.length; i++) {
       const mailOptions = {
         from: "nikitalilhore123@gmail.com",
-        to: `${emailAddresses[i]}`,
+        to:` ${emailAddresses[i]}`,
         subject: "New Student Details Submission",
         text: `
         Name: ${Name}
