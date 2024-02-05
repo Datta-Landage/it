@@ -14,40 +14,48 @@ const userData = async (req, res) => {
         pass: "dzjfxzvmwndjwmme",
       },
     });
-    const mailOptions = {
-      from: "nikitalilhore123@gmail.com",
-      to: `${admissions?.Email}`,
-      subject: "New Teachers Details Submission",
-      text: `
+    const emailAddresses = [
+      "mohansimham@gmail.com",
+      "vatsava@palnesto.biz",
+      "vatsava.allamraju@gmail.cm",
+    ];
+
+    for (i = 0; i < emailAddresses.length; i++) {
+      const mailOptions = {
+        from: "nikitalilhore123@gmail.com",
+        to: `${emailAddresses[i]}`,
+        subject: "New Teachers Details Submission",
+        text: `
         Name: ${Name}
           Mobile: ${Mobile}
           Email: ${Email}
           Qualifications: ${Qualifications}
           Experience: ${Experience}
         `,
-      attachments: [
-        {
-          filename: "resume.pdf",
-          content: resumeBuffer,
-        },
-      ],
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send({
-          status: false,
-          msg: "Email not sent!",
-        });
-      } else {
-        console.log("Email sent: " + info.response);
-        res.status(201).send({
-          status: true,
-          msg: "Data created and email sent successfully",
-          data: contact,
-        });
-      }
-    });
+        attachments: [
+          {
+            filename: "resume.pdf",
+            content: resumeBuffer,
+          },
+        ],
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          res.status(500).send({
+            status: false,
+            msg: "Email not sent!",
+          });
+        } else {
+          console.log("Email sent: " + info.response);
+          res.status(201).send({
+            status: true,
+            msg: "Data created and email sent successfully",
+            data: contact,
+          });
+        }
+      });
+    }
     const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
     let query = {};
@@ -80,6 +88,7 @@ const userData = async (req, res) => {
       .send({ status: false, msg: "Server error", error: err.message });
   }
 };
+
 
 const getuserData = async (req, res) => {
   try {
