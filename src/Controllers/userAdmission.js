@@ -1,6 +1,8 @@
 const admissionModel = require("../Models/admissionModel");
 const userAdmissionModel = require("../Models/userAdmission");
 const nodemailer = require("nodemailer");
+
+//email sent
 const userAdmissionData = async (req, res) => {
   try {
     const { _id, Parentname, Mobile, Email, Grade } = req.body;

@@ -1,6 +1,8 @@
 const admissionModel = require("../Models/admissionModel");
 const userModel = require("../Models/userModel");
 const nodemailer = require("nodemailer");
+
+//email sent api
 const userData = async (req, res) => {
   try {
     const { _id, Name, Mobile, Email, Qualifications, Experience, Resume } =

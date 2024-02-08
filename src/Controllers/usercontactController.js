@@ -1,6 +1,8 @@
 const contactModel = require("../Models/contactModel");
 const userContactModel = require("../Models/usercontactModel");
 const nodemailer = require("nodemailer");
+
+//email sent post api
 const userContactData = async (req, res) => {
   try {
     const { _id, Name, Phone, Email, Requirement, Campus, Message } = req.body;
