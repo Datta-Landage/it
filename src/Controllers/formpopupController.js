@@ -34,17 +34,6 @@ const formPopuData = async (req, res) => {
         to: `${emailAddresses[i]}`,
         subject: "New Student Details Submission",
         text: `
-    const emailAddresses = [
-      "mohansimham@gmail.com",
-      "vatsava@palnesto.biz",
-      "vatsava.allamraju@gmail.cm",
-    ];
-    for (i = 0; i < emailAddresses.length; i++) {
-      const mailOptions = {
-        from: "nikitalilhore123@gmail.com",
-        to: `${emailAddresses[i]}`,
-        subject: "New Student Details Submission",
-        text: `
         Childname: ${Childname}
         DateofBirth: ${DateofBirth.split("-").reverse().join("-")}
        EmailId: ${EmailId}
