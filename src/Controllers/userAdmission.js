@@ -8,8 +8,8 @@ const userAdmissionData = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "nikitalilhore123@gmail.com",
-        pass: "dzjfxzvmwndjwmme",
+         user:"stmichaels866@gmail.com",
+        pass:"btqjqursctqvgcbz",
       },
     });
     const emailAddresses = [

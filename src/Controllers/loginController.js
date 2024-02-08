@@ -1,10 +1,9 @@
 const loginModel = require("../Models/loginModel");
-
 const jwt = require("jsonwebtoken");
+
 const createUser = async (req, res) => {
   try {
     let data = req.body;
-
     const { Email, Password } = data;
 
     if (!Email || !Password) {
@@ -13,7 +12,6 @@ const createUser = async (req, res) => {
         .send({ status: false, message: "All fields are required" });
     }
 
-    // Directly store the plaintext password (not recommended for production)
     const newUser = new loginModel(data);
     await newUser.save();
 
@@ -29,35 +27,49 @@ const createUser = async (req, res) => {
 
 const userLogin = async (req, res) => {
   try {
-    let body = req.body;
-    if (Object.keys(body).length > 0) {
-      let userName = req.body.Email;
-      let Password = req.body.Password;
+    const { Email, Password } = req.body;
 
-      let user = await loginModel.findOne({ Email: userName });
-
-      // if (!user || user.Password !== Password) {
-      //   return res.status(400).send({
-      //     status: false,
-      //     msg: "credentials are not correct",
-      //   });
-      // }
-
-      let token = jwt.sign(
-        {
-          userId: user._id,
-        },
-        "STMicheals",
-        { expiresIn: "12hrs" }
-      );
-
-      res.status(200).setHeader("x-api-key", token);
-      return res.status(201).send({ status: "loggedin", token: token });
-    } else {
-      return res.status(400).send({ msg: "Bad Request" });
+    // Check if both email and password are provided
+    if (!Email || !Password) {
+      return res.status(400).send({
+        status: false,
+        message: "Both email and password are required",
+      });
     }
+
+    // Find the user by email
+    const user = await loginModel.findOne({ Email });
+
+    // Check if user exists and if the password matches
+    if (!user) {
+      return res.status(401).send({
+        status: false,
+        message: "No user found with this email",
+      });
+    }
+
+    // Assuming you are saving the plain text passwords (which you shouldn't, passwords should be hashed)
+    if (user.Password !== Password) {
+      return res.status(401).send({
+        status: false,
+        message: "Password is incorrect",
+      });
+    }
+
+    // Generate a token
+    let token = jwt.sign(
+      {
+        userId: user._id,
+      },
+      "chessBoard",
+      { expiresIn: "12hrs" }
+    );
+
+    // Respond with token
+    res.setHeader("x-api-key", token);
+    return res.status(200).send({ status: "loggedin", token: token });
   } catch (err) {
-    return res.status(500).send({ msg: err.message });
+    return res.status(500).send({ status: false, message: err.message });
   }
 };
 
@@ -66,13 +78,13 @@ const getusersData = async (req, res) => {
     const Data = await loginModel.find();
     res.status(200).send({
       status: true,
-      msg: "Data retrieved succesfully",
+      msg: "Data retrieved successfully",
       data: Data,
     });
   } catch (err) {
     return res
       .status(500)
-      .send({ status: false, msg: "server error", error: err.message });
+      .send({ status: false, msg: "Server error", error: err.message });
   }
 };
 
