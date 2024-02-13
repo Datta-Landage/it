@@ -17,7 +17,7 @@ const userAdmissionData = async (req, res) => {
     const emailAddresses = [
       "mohansimham@gmail.com",
       "vatsava@palnesto.biz",
-      "vatsava.allamraju@gmail.cm",
+      "vatsava.allamraju@gmail.com",
     ];
     for (i = 0; i < emailAddresses.length; i++) {
       const mailOptions = {
