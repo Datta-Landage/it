@@ -11,19 +11,21 @@ const userData = async (req, res) => {
     const admissions = await admissionModel.findOne({ isDeleted: false });
     const transporter = nodemailer.createTransport({
       service: "gmail",
-      auth: {
-       user:"webleadsms@gmail.com",
-        pass:"lttanekjngdfciit",  },
+         auth: {
+        user:"nikitalilhore123@gmail.com",
+       pass:"szrv anxb grbw mymw",
+     },
     });
     const emailAddresses = [
       "mohansimham@gmail.com",
       "vatsava@palnesto.biz",
       "vatsava.allamraju@gmail.com",
+      "webleadsms@gmail.com",
     ];
 
     for (i = 0; i < emailAddresses.length; i++) {
       const mailOptions = {
-        from: "webleadsms@gmail.com",
+        from: "nikitalilhore123@gmail.com",
         to: `${emailAddresses[i]}`,
         subject: "New Teachers Details Submission",
         text: `
