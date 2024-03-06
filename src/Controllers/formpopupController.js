@@ -21,18 +21,19 @@ const formPopuData = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-       user:"webleadsms@gmail.com",
-        pass:"lttanekjngdfciit",
-      },
+        user:"nikitalilhore123@gmail.com",
+       pass:"szrv anxb grbw mymw",
+     },
     });
     const emailAddresses = [
       "mohansimham@gmail.com",
       "vatsava@palnesto.biz",
       "vatsava.allamraju@gmail.com",
+      "webleadsms@gmail.com",
     ];
     for (i = 0; i < emailAddresses.length; i++) {
       const mailOptions = {
-        from:"webleadsms@gmail.com",
+        from:"nikitalilhore123@gmail.com",
         to: `${emailAddresses[i]}`,
         subject: "New Student Details Submission",
         text: `
