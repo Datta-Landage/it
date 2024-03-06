@@ -20,20 +20,20 @@ const formPopuData = async (req, res) => {
     const admissions = await contactModel.findOne({ isDeleted: false });
     const transporter = nodemailer.createTransport({
       service: "gmail",
-      auth: {
-        user:"nikitalilhore123@gmail.com",
-       pass:"szrv anxb grbw mymw",
-     },
+       auth: {
+       user:"webleadsms@gmail.com",
+        pass:"lttanekjngdfciit",
+      },
     });
     const emailAddresses = [
       "mohansimham@gmail.com",
       "vatsava@palnesto.biz",
       "vatsava.allamraju@gmail.com",
-      "webleadsms@gmail.com",
+      
     ];
     for (i = 0; i < emailAddresses.length; i++) {
       const mailOptions = {
-        from:"nikitalilhore123@gmail.com",
+        from:"webleadsms@gmail.com",
         to: `${emailAddresses[i]}`,
         subject: "New Student Details Submission",
         text: `
